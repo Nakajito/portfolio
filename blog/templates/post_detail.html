@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<h2 class="text-center">{{post.title}}</h2>
+<img class="img-fluid" src="{{post.image.url}}" alt="{{post.image.title}}">
+<h4 class="my-3 h5 text-muted">{{post.date|date:'F jS Y'}}</h4>
+<p>{{post.content|safe}}</p>
+<div class="text-center">
+    <a class="btn btn-dark" href="{% url 'blog:post' %}">Regresar</a>
+</div>
+
+{% endblock %}

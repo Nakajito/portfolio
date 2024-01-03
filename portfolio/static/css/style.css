@@ -1,0 +1,4 @@
+.card-project:hover {
+    border: 1px solid #FF9800;
+    cursor: pointer;
+}

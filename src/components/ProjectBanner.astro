@@ -1,0 +1,43 @@
+---
+import type { Project } from "@/data/projects";
+
+type Props = Project;
+
+const { title, techs, link, isComingSoon } = Astro.props;
+
+const formatSkills = (values: string[]) =>
+  values.toString().replaceAll(",", " • ");
+---
+
+<>
+  {
+    isComingSoon && (
+      <div class="t group flex w-full flex-col justify-between gap-2 border rounded border-neutral-600 p-4 md:flex-row md:items-center">
+        <div class="flex flex-col gap-2 md:flex-row md:items-center md:gap-4">
+          <p class="text-xl">{title}</p>
+          <p class="text-neutral-700 dark:text-neutral-400">{formatSkills(techs)}</p>
+        </div>
+
+        <p class="w-fit border rounded border-neutral-600 px-4 py-1">Soon</p>
+      </div>
+    )
+  }
+
+  {
+    !isComingSoon && (
+      <a
+        class="group icon-link flex w-full cursor-pointer justify-between gap-2 border rounded border-neutral-600 p-4 transition-all duration-300 card-hover-effect hover-lift flex-row md:items-center"
+        href={link}
+        target="_blank"
+        rel="noreferrer"
+      >
+        <div class="flex flex-col gap-4 md:flex-row md:items-center">
+          <p class="text-xl">{title}</p>
+          <p class="text-neutral-700 dark:text-neutral-400">{formatSkills(techs)}</p>
+        </div>
+
+        <img class="h-4 w-4" src="/assets/svg/icons/globe.svg"/>
+      </a>
+    )
+  }
+</>

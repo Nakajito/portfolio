@@ -1,0 +1,70 @@
+---
+import type { Project } from "@/data/projects";
+
+type Props = Project;
+const { title, techs, link, repoUrl, imageUrl, isComingSoon } = Astro.props;
+
+const formatSkills = (values: string[]) =>
+  values.toString().replaceAll(",", " • ");
+---
+
+<div
+  class="card-hover-effect card-image-hover-effect hover-lift flex flex-col h-96 max-w-sm rounded border shadow border-neutral-500 bg-transparent hover:border-orange-500 transition-all duration-300"
+>
+  {
+    imageUrl && (
+      <div class="w-full h-44 p-2 overflow-hidden">
+        <img
+          src={imageUrl}
+          alt={`${title} project screenshot`}
+          class="w-full h-full border rounded border-neutral-500 transition-colors duration-300"
+        />
+      </div>
+    )
+  }
+  <div class="p-4 flex-grow">
+    <h5 class="mb-2 text-2xl font-bold tracking-tight">
+      {title}
+    </h5>
+    <div class="mb-3 pt-4 text-sm text-gray-500">
+      {formatSkills(techs)}
+    </div>
+  </div>
+
+  <div class="p-3 mt-auto">
+    {
+      !isComingSoon && (
+        <div class="flex flex-wrap justify-end gap-2">
+          {repoUrl && (
+            <a
+              class="icon-link"
+              href={repoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                class="size-14 p-1 md:size-10"
+                src="/assets/svg/icons/github-light.svg"
+                alt="git repo url"
+              />
+            </a>
+          )}
+          {link && (
+            <a
+              class="icon-link"
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                class="size-14 p-1 md:size-10"
+                src="/assets/svg/icons/globe.svg"
+                alt="live url"
+              />
+            </a>
+          )}
+        </div>
+      )
+    }
+  </div>
+</div>

@@ -1,0 +1,52 @@
+---
+
+---
+
+<button id="themeToggle" class="p-3 icon-link" title="Toggles light & dark">
+  <img src="/assets/svg/icons/sun.svg" id="btn-sun" class="w-6 h-6" />
+  <img src="/assets/svg/icons/moon.svg" id="btn-moon" class="w-6 h-6" />
+</button>
+
+<script is:inline>
+  function applyTheme(theme) {
+    if (theme === "light") {
+      document.documentElement.classList.remove("dark");
+      document.documentElement.classList.add("light");
+    } else {
+      document.documentElement.classList.add("dark");
+      document.documentElement.classList.remove("light");
+    }
+  }
+
+  // Initialize theme
+  const theme = (() => {
+    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+      return localStorage.getItem("theme");
+    }
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      return "dark";
+    }
+    return "light";
+  })();
+
+  // Apply theme immediately
+  applyTheme(theme);
+
+  // Persist theme
+  document.addEventListener("astro:after-swap", () =>
+    applyTheme(localStorage.getItem("theme") || theme),
+  );
+
+  // Handle toggle click
+  document.addEventListener("astro:page-load", () => {
+    const themeToggle = document.getElementById("themeToggle");
+    if (themeToggle) {
+      themeToggle.addEventListener("click", () => {
+        const isDark = document.documentElement.classList.contains("dark");
+        const newTheme = isDark ? "light" : "dark";
+        localStorage.setItem("theme", newTheme);
+        applyTheme(newTheme);
+      });
+    }
+  });
+</script>

@@ -1,0 +1,45 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import formatDate from "@/utils/formatDate";
+import { Image } from "astro:assets";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blogs");
+
+  return posts.map((blog) => ({
+    params: { slug: blog.slug },
+    props: { blog },
+  }));
+}
+
+type Props = {
+  blog: CollectionEntry<"blogs">;
+};
+
+const { blog } = Astro.props;
+const { Content } = await blog.render();
+---
+
+<Layout title={blog.data.title}>
+  <div class="blog mx-auto flex w-full px-4 flex-col gap-4">
+    <header role="presentation">
+      <h1 class="text-md text-orange-400">
+        {blog.data.title} - {formatDate(blog.data.publishedAt)}
+      </h1>
+      <p class="italic">{blog.data.description}</p>
+
+      {
+        blog.data.imagePath && (
+          <Image
+            src={blog.data.imagePath}
+            alt={`${blog.data.title} blog snapshot`}
+            class="mx-auto w-max py-1"
+          />
+        )
+      }
+    </header>
+
+    <Content />
+  </div>
+</Layout>

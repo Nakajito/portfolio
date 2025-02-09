@@ -1,0 +1,19 @@
+---
+import InfoCard from "@/components/shared/InfoCard.astro";
+import presentation from "@/data/presentation";
+---
+
+<InfoCard>
+  <div class="m-auto p-6 flex flex-col items-center">
+    <img
+      class="w-40 h-40 mb-3 rounded-full shadow-lg border-2 border-neutral-500"
+      src="/assets/images/profilepic.jpg"
+    />
+    <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">
+      {presentation.name}
+    </h5>
+    <span class="text-sm text-gray-500 dark:text-gray-400">
+      {presentation.title}
+    </span>
+  </div>
+</InfoCard>

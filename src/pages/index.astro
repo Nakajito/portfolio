@@ -1,0 +1,95 @@
+---
+import { getCollection } from "astro:content";
+
+import Layout from "@/layouts/Layout.astro";
+import PostCard from "@/components/PostCard.astro";
+import ProjectBanner from "@/components/ProjectBanner.astro";
+import SkillCard from "@/components/SkillTab.astro";
+import InfoPanel from "@/components/InfoPanel.astro";
+import Link from "@/components/shared/Link.astro";
+import presentation from "@/data/presentation";
+import projects from "@/data/projects";
+import skills from "@/data/skills";
+import { type SkillCardProps } from "@/data/skills";
+
+const blogCollection = await getCollection("blogs");
+---
+
+<Layout>
+  <div class="flex flex-col md:flex-row md:justify-between">
+    <div class="md:w-1/3 md:pr-4">
+      <InfoPanel />
+    </div>
+    <div class="py-4 md:flex-grow">
+      <div class="flex max-w-[872px] min-h-lvh flex-col gap-20">
+        <article class="flex flex-col gap-8">
+          <h3 class="text-lg">Sobre mi</h3>
+          <h2
+            class="max-w-[80ch] leading-6"
+            set:html={presentation.description}
+          />
+        </article>
+
+        <article class="flex flex-col gap-8">
+          <header class="flex w-full flex-row justify-between gap-2">
+            <h3 class="text-lg">Últimos posts</h3>
+            <Link href="/blog" label="Más" isUnderline target="_self" />
+          </header>
+          {
+            blogCollection.length === 0 ? (
+              <p>Soon, stay connected 👀...</p>
+            ) : (
+              <section class="flex flex-col gap-4 md:flex-row md:flex-wrap">
+                {blogCollection.slice(0, 2).map((post) => (
+                  <PostCard
+                    publishedAt={post.data.publishedAt}
+                    title={post.data.title}
+                    description={post.data.description}
+                    slug={post.slug}
+                  />
+                ))}
+              </section>
+            )
+          }
+        </article>
+
+        <article class="flex flex-col gap-8">
+          <header class="flex w-full flex-row justify-between gap-2">
+            <h3 class="text-lg">Habilidades</h3>
+          </header>
+          {
+            Object.keys(skills).length === 0 ? (
+              <p class="text-xl text-orange-600">Soon, stay connected 👀...</p>
+            ) : (
+              <section class="flex flex-col gap-4">
+                {skills?.map(({ type, skillGroup }: SkillCardProps) => (
+                  <SkillCard type={type} skillGroup={skillGroup} />
+                ))}
+              </section>
+            )
+          }
+        </article>
+
+        <article class="flex flex-col gap-8">
+          <header class="flex w-full flex-row justify-between gap-2">
+            <h3 class="text-lg">
+              Projects ({projects.length})
+            </h3>
+            <Link href="/projects" label="Más" isUnderline target="_self" />
+          </header>
+          {
+            projects.length === 0 ? (
+              <p>Soon, stay connected 👀...</p>
+            ) : (
+              <section class="flex flex-col gap-4">
+                {projects.slice(0, 3).map((project) => (
+                  <ProjectBanner {...project} />
+                ))}
+              </section>
+            )
+          }
+        </article>
+      </div>
+    </div>
+  </div>
+</Layout>

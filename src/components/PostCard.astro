@@ -1,0 +1,46 @@
+---
+import formatDate from "@/utils/formatDate";
+
+type Props = {
+  title: string;
+  publishedAt: Date;
+  description: string;
+  slug: string;
+};
+
+const { title, publishedAt, description, slug } = Astro.props;
+---
+
+<a
+  class="group card-hover-effect hover-lift flex w-full cursor-pointer flex-col gap-2 border-b border-neutral-500 py-6 transition-all duration-300 card-hover-effect"
+  href={`/blog/${slug}`}
+>
+  <div class="flex justify-end">
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 18 18"
+      fill="none"
+      class="transition-all duration-300 group-hover:translate-x-1"
+    >
+      <path
+        d="M5.25 12.75L12.75 5.25"
+        stroke="#999999"
+        stroke-linecap="round"
+        stroke-linejoin="round"></path>
+      <path
+        d="M5.25 5.25H12.75V12.75"
+        stroke="#999999"
+        stroke-linecap="round"
+        stroke-linejoin="round"></path>
+    </svg>
+  </div>
+  <div class="flex w-full justify-between gap-2 flex-row md:items-center">
+    <p class="text-lg overflow-hidden">{title}</p>
+
+    <p>{formatDate(publishedAt)}</p>
+  </div>
+  <p class="text-neutral-500 truncate">
+    {description}
+  </p>
+</a>

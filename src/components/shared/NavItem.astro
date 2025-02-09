@@ -1,0 +1,27 @@
+---
+import splitPathname from "@/utils/getSplitPaths.ts";
+import type { NavItemType } from "@/data/navItemsList";
+
+type Props = NavItemType;
+
+const { title, link, additionalClasses }: NavItemType = Astro.props;
+const [mainPathname, ...subpaths] = splitPathname(Astro.url.pathname);
+---
+
+<>
+  <a
+    href={link}
+    class:list={[
+      "p-1",
+      additionalClasses
+        ? additionalClasses
+        : {
+            "hover:text-orange-500": mainPathname !== link,
+            "text-neutral-900 dark:text-neutral-100 border-b-2 border-orange-500":
+              mainPathname === link,
+          },
+    ]}
+  >
+    {title}
+  </a>
+</>

@@ -1,0 +1,46 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import PostCard from "@/components/PostCard.astro";
+import FeaturedPostCard from "@/components/FeaturedPostCard.astro";
+
+const blogs = await getCollection("blogs");
+const featured = blogs.slice(0, 2);
+---
+
+<Layout title="Chaturved Degloorkar | Blog">
+  <h1 class="text-3xl font-bold py-2">Blog</h1>
+  <div class="flex flex-col min-h-lvh">
+    {blogs.length === 0 && <p>Soon, stay connected 👀...</p>}
+    <article class="flex flex-col">
+      {
+        featured.length !== 0 &&
+          featured.map((post) => (
+            <div class="py-3 pb-3">
+              <FeaturedPostCard
+                publishedAt={post.data.publishedAt}
+                title={post.data.title}
+                description={post.data.description}
+                slug={post.slug}
+                imageUrl={post.data.imagePath}
+              />
+            </div>
+          ))
+      }
+
+      {
+        blogs.length !== 0 &&
+          blogs
+            .slice(2, blogs.length)
+            .map((post) => (
+              <PostCard
+                publishedAt={post.data.publishedAt}
+                title={post.data.title}
+                description={post.data.description}
+                slug={post.slug}
+              />
+            ))
+      }
+    </article>
+  </div>
+</Layout>

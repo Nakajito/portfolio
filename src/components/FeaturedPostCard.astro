@@ -1,0 +1,61 @@
+---
+import formatDate from "@/utils/formatDate";
+import { Image } from "astro:assets";
+
+type Props = {
+  title: string;
+  publishedAt: Date;
+  description: string;
+  imageUrl?: any;
+  slug: string;
+};
+
+const { title, publishedAt, description, slug, imageUrl } = Astro.props;
+---
+
+<a
+  class="group overflow-hidden flex flex-row gap-2 p-4 max-h-96 sm:max-h-64 cursor-pointer justify-between border rounded border-neutral-500 transition-all duration-300 card-hover-effect card-image-hover-effect hover-lift"
+  href={`/blog/${slug}`}
+>
+  <div class="flex flex-col sm:flex-row w-full">
+    {
+      imageUrl && (
+        <div class="w-full sm:w-5/6 h-56">
+          <Image
+            src={imageUrl}
+            alt={`${title} blog snapshot`}
+            class="w-full h-full border rounded border-neutral-500 transition-colors duration-300"
+          />
+        </div>
+      )
+    }
+
+    <div class="flex flex-col w-full p-2">
+      <div class="flex flex-row w-full justify-between items-center py-2">
+        <h2 class="text-lg overflow-hidden">{title}</h2>
+        <p>{formatDate(publishedAt)}</p>
+      </div>
+      <p class="pb-2 overflow-auto">{description}</p>
+    </div>
+  </div>
+  <div class="hidden sm:flex justify-end">
+    <svg
+      height="18"
+      width="18"
+      viewBox="0 0 18 18"
+      fill="none"
+      class="w-auto transition-all duration-300 group-hover:translate-x-1"
+    >
+      <path
+        d="M5.25 12.75L12.75 5.25"
+        stroke="#999999"
+        stroke-linecap="round"
+        stroke-linejoin="round"></path>
+      <path
+        d="M5.25 5.25H12.75V12.75"
+        stroke="#999999"
+        stroke-linecap="round"
+        stroke-linejoin="round"></path>
+    </svg>
+  </div>
+</a>

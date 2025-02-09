@@ -1,0 +1,75 @@
+---
+import presentation from "@/data/presentation";
+import navItemsList from "@/data/navItemsList";
+import NavItem from "@/components/shared/NavItem.astro";
+import type { NavItemType } from "@/data/navItemsList";
+import ThemeIcon from "@/components/ThemeIcon.astro";
+---
+
+<header>
+  <div class="flex flex-row border-b-2 border-neutral-500">
+    <nav class="flex w-full flex-row justify-between">
+      <a href="/" class="text-4xl hover:text-orange-500">
+        {presentation.name}
+      </a>
+      <ul
+        class="hidden text-lg md:flex md:justify-between md:space-x-4 md:py-2"
+      >
+        {
+          navItemsList.map((item: NavItemType) => (
+            <li>
+              <NavItem {...item} />
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <ThemeIcon />
+    <button class="md:hidden" aria-label="menu-icon">
+      <svg
+        class="block h-4 w-4 fill-current"
+        viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <title>Mobile menu</title>
+        <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<ul
+  class="hidden flex-col border-b-2 border-neutral-500 px-2 pb-10 text-lg md:hidden"
+  aria-label="menu"
+>
+  {
+    navItemsList.map((item: NavItemType) => (
+      <li class="p-2">
+        <NavItem {...item} />
+      </li>
+    ))
+  }
+</ul>
+
+<script>
+  let menuOpen = false;
+
+  function toggleMenu() {
+    const menu = document.querySelector('ul[aria-label="menu"]');
+    if (menu) {
+      menuOpen = !menuOpen;
+      menu.classList.toggle("hidden", !menuOpen);
+    }
+  }
+
+  document.addEventListener("astro:page-load", () => {
+    const burger = document.querySelector('button[aria-label="menu-icon"]');
+    if (burger) {
+      burger.addEventListener("click", toggleMenu);
+    }
+
+    // Preserve menu state across page transitions
+    const menuItems = document.querySelectorAll('ul[aria-label="menu"] li');
+    menuItems.forEach((item) => item.addEventListener("click", toggleMenu));
+  });
+</script>

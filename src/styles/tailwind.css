@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .light {
+    @apply bg-gray-300;
+  }
+  .dark {
+    @apply bg-gray-900;
+  }
+}
+
+@layer utilities {
+  .custom-filter {
+    filter: invert(56%) sepia(93%) saturate(1700%) hue-rotate(346deg) brightness(97%) contrast(96%);
+  }
+}
+
+@layer components {
+  .card-hover-effect,
+  .card-image-hover-effect img {
+    @apply transition-colors duration-300 ease-in-out;
+  }
+  .icon-link img {
+    @apply invert brightness-200 transition-all duration-300 ease-in-out;
+  }
+  .hover-lift {
+    @apply transition-transform duration-300 ease-in-out;
+  }
+  #themeToggle {
+    @apply border-0 bg-transparent;
+  }
+  #themeToggle img {
+    @apply transition-opacity duration-300 ease-in-out;
+  }
+}
+
+.card-hover-effect:hover,
+.card-image-hover-effect:hover img{
+  @apply border-orange-500;
+}
+
+.hover-lift:hover {
+  @apply -translate-y-2;
+}
+
+/* Theme toggle button visibility */
+#btn-sun, #btn-moon {
+  @apply hidden;
+}
+
+.light #btn-moon,
+.dark #btn-sun {
+  @apply block;
+}
+
+/* Theme toggle button inversion */
+/*.light #themeToggle img {*/
+/*  @apply invert-0;*/
+/*}*/
+/**/
+/*.dark #themeToggle img {*/
+/*  @apply invert;*/
+/*}*/
+
+/* button inversion */
+.light .icon-link img {
+  @apply invert-0;
+}
+
+.dark .icon-link img {
+  @apply invert;
+}
+
+.icon-link:hover img {
+  @apply custom-filter;
+}
+

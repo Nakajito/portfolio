@@ -1,0 +1,40 @@
+.blog p {
+  @apply leading-7;
+}
+
+.blog code {
+  @apply rounded-sm px-1 py-[1px] text-orange-600;
+}
+
+.blog h2 {
+  @apply mt-6 text-3xl text-orange-400;
+}
+
+.blog h3 {
+  @apply mt-4 text-xl text-opacity-70;
+}
+
+.blog a {
+  @apply underline underline-offset-4 decoration-orange-500;
+}
+
+.blog ul {
+  @apply list-disc;
+}
+
+.blog img {
+  @apply mx-auto w-max;
+}
+
+.blog blockquote {
+  @apply flex flex-row gap-2 before:block before:h-auto before:w-1 before:max-w-[1px] before:bg-orange-600 before:content-[''];
+}
+
+.blog pre {
+  @apply p-4 bg-gray-800 rounded-md !important ;
+}
+
+
+.blog pre > code {
+  @apply bg-transparent;
+}

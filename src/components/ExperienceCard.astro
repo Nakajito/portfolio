@@ -1,0 +1,31 @@
+---
+import InfoCard from "@/components/shared/InfoCard.astro";
+import experiences from "@/data/experience";
+
+---
+
+<InfoCard>
+  <div class="m-6 flex flex-col justify-between">
+    {
+      experiences.map((section) => (
+        <div class="mb-6">
+          <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">
+            {section.title}
+          </h3>
+          {section.items.map((item) => (
+            <div class="mb-3">
+              <h5 class="text-md font-medium text-gray-900 dark:text-white">
+                {item.company}
+              </h5>
+              <span class="flex flex-row justify-between text-xs text-gray-500 dark:text-gray-400">
+                <p>{item.role}</p>
+                <p>{item.period}</p>
+              </span>
+            </div>
+          ))}
+        </div>
+      ))
+    }
+  </div>
+</InfoCard>
+

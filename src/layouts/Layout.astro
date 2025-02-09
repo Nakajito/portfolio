@@ -1,0 +1,32 @@
+---
+import Header from "@/components/Header.astro";
+import SEOTags from "@/components/seo/SEOTags.astro";
+//import { fade } from "astro:transitions";
+import "@fontsource/open-sans";
+import "@/styles/tailwind.css";
+import "@/styles/blog.css";
+import Footer from "@/components/Footer.astro";
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <SEOTags title={title} />
+
+  <body
+    class="mx-auto flex flex-col min-h-screen max-w-[1050px] bg-transparent px-10 py-8 gap-8 text-sm text-neutral-900 dark:text-neutral-200 md:gap-14 md:py-16"
+  >
+    <Header />
+    <!-- Content Slot -->
+    <main transition:animate="fade">
+      <slot />
+    </main>
+    <Footer />
+    <style is:global>
+      html {
+        font-family: "Open Sans";
+      }
+    </style>
+  </body>
+</html>

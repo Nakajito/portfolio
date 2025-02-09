@@ -13,14 +13,16 @@ const projects: Project[] = [
     techs: ["Python"],
     link: "https://example.com/projects/weather-cli/",
     repoUrl: "https://github.com/username/weather-cli",
-    imageUrl: "/assets/images/projectCover.jpg",
+    imageUrl: "/assets/images/gen_psw.jpg",
     isComingSoon: true,
   },
   {
     title: "Bienes Raices",
-    techs: ["React", "TypeScript"],
-    link: "https://example.com/projects/task-manager/",
-    isComingSoon: true,
+    techs: ["PHP", "SCSS", "HTML", "JavaScript", "MySQL"],
+    repoUrl: "https://github.com/Nakajito/Inmuebles",
+    link: "https://github.com/Nakajito/Inmuebles",
+    imageUrl: "/assets/images/bienes_raices.jpg",
+    isComingSoon: false,
   },
 
 ];

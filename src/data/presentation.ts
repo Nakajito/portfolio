@@ -41,11 +41,7 @@ const socialMediaPlatforms: SocialMediaPlatform[] = [
     url: 'https://www.linkedin.com/in/daniel-bonilla-866b4320a/',
     icon: '/assets/svg/icons/linkedin.svg',
   },
-  // {
-  //   type: SocialType.instagram,
-  //   url: 'https://www.instagram.com/xxx',
-  //   icon: '/assets/svg/icons/instagram.svg',
-  // },
+
 ];
 
 const presentation: Presentation = {

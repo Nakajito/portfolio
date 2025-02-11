@@ -5,7 +5,7 @@ publishedAt: 2023-10-02
 description: "Explore Java's evolution and its current role in enterprise software development"
 slug: "java-journey-applets-to-modern-enterprise"
 isPublished: true
-imagePath: "../../assets/blogcover.jpg"
+imagePath: "../../assets/osint.jpg"
 ---
 
 ## The Birth of Java: Applets and "Write Once, Run Anywhere"

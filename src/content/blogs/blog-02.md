@@ -5,7 +5,7 @@ publishedAt: 2023-11-10
 description: "Learn timeless principles for writing clean, maintainable, and efficient code"
 slug: "art-of-clean-code-principles-maintainable-software"
 isPublished: true
-imagePath: "../../assets/blogcover.jpg"
+imagePath: "../../assets/osint.jpg"
 ---
 
 ## The Importance of Code Readability

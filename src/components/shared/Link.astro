@@ -6,19 +6,18 @@ type Props = HTMLAttributes<"a"> & {
   isUnderline?: boolean;
 };
 
-const { label, isUnderline, ...props } = Astro.props;
+const { label, isUnderline, target, ...props } = Astro.props;
+const relValue = target === "_blank" ? "noopener noreferrer" : undefined;
 ---
 
 <a
-  href={props.href}
-  class:list={{
-    ["text-sm hover:text-orange-500 cursor-pointer"]: true,
-    ["underline decoration-dashed underline-offset-8"]: isUnderline,
-  }}
+  href={props.href || "#"}
+  class={`text-sm hover:text-orange-500 cursor-pointer 
+    ${isUnderline ? "underline decoration-dashed underline-offset-8" : ""}`}
+  aria-label={label}
+  target={target}
+  rel={relValue}
   {...props}
-  rel="noreferrer"
-  target="_blank"
 >
   {label}
-  <span class="sr-only">{label} link</span>
 </a>

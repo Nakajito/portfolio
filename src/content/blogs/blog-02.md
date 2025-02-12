@@ -2,9 +2,9 @@
 title: "OSINT: Qué es y por qué es importante en la era digital"
 publishedAt: 2025-02-11
 description: "La información es poder: OSINT, técnica utilizada para recolectar información."
-slug: "OSINT-Que-Es-y-Por-Qué-Es-Importante-en-la-Era-Digital"
 isPublished: true
 imagePath: "../../assets/osint-2.jpg"
+slug: "OSINT-Que-Es-y-Por-Qué-Es-Importante-en-la-Era-Digital"
 ---
 
 ## OSINT: Qué es y por qué es importante en la era digital

@@ -5,23 +5,18 @@ import type { NavItemType } from "@/data/navItemsList";
 type Props = NavItemType;
 
 const { title, link, additionalClasses }: NavItemType = Astro.props;
-const [mainPathname, ...subpaths] = splitPathname(Astro.url.pathname);
+const [mainPathname] = splitPathname(Astro.url.pathname);
+const isActive = mainPathname.startsWith(link);
 ---
 
-<>
-  <a
-    href={link}
-    class:list={[
-      "p-1",
-      additionalClasses
-        ? additionalClasses
-        : {
-            "hover:text-orange-500": mainPathname !== link,
-            "text-neutral-900 dark:text-neutral-100 border-b-2 border-orange-500":
-              mainPathname === link,
-          },
-    ]}
-  >
-    {title}
-  </a>
-</>
+<a
+  href={link || "#"}
+  class={`p-1 transition-colors duration-300 
+    ${additionalClasses ? additionalClasses : isActive 
+      ? "text-neutral-900 dark:text-neutral-100 border-b-2 border-orange-500" 
+      : "hover:text-orange-500"
+    }`}
+  aria-current={isActive ? "page" : undefined}
+>
+  {title}
+</a>

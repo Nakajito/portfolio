@@ -1,33 +1,27 @@
 ---
 import presentation from "@/data/presentation";
 
-enum SocialType {
-  linkedIn = "LinkedIn",
-  gitHub = "GitHub",
-  twitter = "Twitter",
-  email = "Email",
-}
+const socialMedia = presentation.socialMedia ?? [];
 ---
 
 <div class="flex justify-center gap-3">
-  {
-    presentation.socialMedia.map((social) => {
-      const href =
-        social.type === SocialType.email ? `mailto:${social.url}` : social.url;
-      return (
-        <a
-          aria-label={social.type}
-          class="icon-link"
-          href={href}
-          target="_blank"
-        >
-          <img
-            class="size-14 p-1 md:size-8"
-            src={social.icon}
-            alt={social.type}
-          />
-        </a>
-      );
-    })
-  }
+  {socialMedia.map(({ type, url, icon }) => {
+    const href = type === "Email" ? `mailto:${url}` : url;
+
+    return (
+      <a
+        href={href}
+        aria-label={type}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="transition-transform hover:scale-110"
+      >
+        <img
+          class="w-12 h-12 sm:w-8 sm:h-8 p-1"
+          src={icon}
+          alt=""
+        />
+      </a>
+    );
+  })}
 </div>

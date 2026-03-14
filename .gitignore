@@ -276,3 +276,8 @@ portfolio/media/
 # Variables de entorno (Sensible)
 .env
 .envs/*
+
+# AI Tools
+.agents/
+.claude/
+CLAUDE.md

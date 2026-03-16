@@ -7,10 +7,12 @@ from django.urls import path
 from django.views import defaults as default_views
 from django.views.generic import TemplateView
 
+from portfolio.projects.views import HomeView
+
 from .api import api
 
 urlpatterns = [
-    path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
+    path("", HomeView.as_view(), name="home"),
     path(
         "about/",
         TemplateView.as_view(template_name="pages/about.html"),

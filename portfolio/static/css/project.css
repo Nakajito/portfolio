@@ -1,8 +1,8 @@
 /* Estilos Globales */
 :root {
-  --primary-color: #26a69a; /* Turquesa */
-  --bg-color-light: #f5f5f5; /* Gris muy claro */
-  --bg-color-dark: #1e293b; /* Gris oscuro para el pie de página */
+  --primary-color: #26a69a;
+  --bg-color-light: #f5f5f5;
+  --bg-color-dark: #1e293b;
   --text-color-dark: #333;
   --text-color-light: #fff;
   --card-bg-color: #fff;
@@ -248,11 +248,17 @@ header {
   flex: 1;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
-.about-illustration svg {
-  width: 200px; /* Ajustar según sea necesario */
-  height: auto;
+.about-illustration img {
+  width: 100%;
+  max-width: 250px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  display: block;
 }
 
 .about-text {
@@ -269,13 +275,34 @@ header {
   background-color: var(--bg-color-light);
 }
 
+.stack-category {
+  margin-bottom: 3.5rem;
+}
+
+.stack-category:last-child {
+  margin-bottom: 0;
+}
+
+.category-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-align: center;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
 .stack-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
 }
 
 .tech-item {
+  width: calc(16.66% - 20px);
+  min-width: 140px;
   background-color: white;
   padding: 2rem;
   border-radius: 12px;
@@ -300,6 +327,13 @@ header {
   height: 32px;
 }
 
+.tech-icon img {
+  width: 32px;
+  height: 32px;
+  display: block;
+  object-fit: contain;
+}
+
 .tech-name {
   font-size: 0.8rem;
   font-weight: 600;
@@ -309,12 +343,19 @@ header {
 
 /* Sección Proyectos */
 .project-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
 .project-card {
+  flex: 0 0 calc(50% - 1rem);
+  max-width: calc(50% - 1rem);
+  box-sizing: border-box;
   background-color: white;
   border-radius: 12px;
   border: 1px solid #eaeaea;
@@ -500,7 +541,7 @@ footer {
 /* Media Queries básicas para responsividad */
 @media (max-width: 900px) {
   .nav-menu {
-    display: none; /* Ocultar menú para simplificar en pantallas más pequeñas */
+    display: none;
   }
   .stack-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -512,6 +553,10 @@ footer {
     flex-direction: column;
     text-align: center;
     gap: 2rem;
+  }
+  .project-card {
+    flex: 0 0 100%;
+    max-width: 100%;
   }
 }
 

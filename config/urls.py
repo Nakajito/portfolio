@@ -1,3 +1,4 @@
+from contact.views import portafolio_view
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -13,11 +14,7 @@ from .api import api
 
 urlpatterns = [
     path("", HomeView.as_view(), name="home"),
-    path(
-        "about/",
-        TemplateView.as_view(template_name="pages/about.html"),
-        name="about",
-    ),
+    path("contact/", portafolio_view, name="contact"),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     # User management

@@ -1,11 +1,11 @@
-{% load static %}
+{% load static i18n %}
 
 <section id="stack">
     <div class="container">
-        <h2 class="section-title">Mi Stack Tecnológico</h2>
-        <p class="section-subtitle">Tecnologías con las que me encanta trabajar.</p>
+        <h2 class="section-title">{% trans "Mi Stack Tecnológico" %}</h2>
+        <p class="section-subtitle">{% trans "Tecnologías con las que me encanta trabajar." %}</p>
         <div class="stack-category">
-            <h3 class="category-title">Backend</h3>
+            <h3 class="category-title">{% trans "Backend" %}</h3>
             <div class="stack-grid">
                 <div class="tech-item">
                     <div class="tech-icon">
@@ -59,7 +59,7 @@
             </div>
         </div>
         <div class="stack-category">
-            <h3 class="category-title">Bases de Datos, DevOps & Cloud</h3>
+            <h3 class="category-title">{% trans "Bases de Datos, DevOps & Cloud" %}</h3>
             <div class="stack-grid">
                 <div class="tech-item">
                     <div class="tech-icon">
@@ -84,7 +84,7 @@
             </div>
         </div>
         <div class="stack-category">
-            <h3 class="category-title">Herramientas & Flujo de Trabajo</h3>
+            <h3 class="category-title">{% trans "Herramientas & Flujo de Trabajo" %}</h3>
             <div class="stack-grid">
                 <div class="tech-item">
                     <div class="tech-icon">

@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <footer>
     <div class="container footer-content">
         <div class="footer-social">
@@ -18,5 +20,5 @@
                 </svg>
             </a>
         </div>
-        <p>&copy; 2024 | Daniel B. - Todos los derechos reservados.</p>
+        <p>&copy; {% now "Y" %} | {% trans "Daniel B. - Todos los derechos reservados." %}</p>
     </footer>

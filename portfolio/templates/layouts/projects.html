@@ -1,8 +1,10 @@
+{% load static i18n %}
+
 <section id="proyectos">
     <div class="container">
-        <h2 class="section-title">Proyectos Destacados</h2>
+        <h2 class="section-title">{% trans "Proyectos Destacados" %}</h2>
         <p class="section-subtitle">
-            Una selección de proyectos que demuestran mi experiencia y habilidades en desarrollo web. Cada proyecto refleja mi compromiso con la calidad y la innovación, y muestra cómo puedo aportar valor a tus necesidades específicas.
+            {% trans "Una selección de proyectos que demuestran mi experiencia y habilidades en desarrollo web. Cada proyecto refleja mi compromiso con la calidad y la innovación, y muestra cómo puedo aportar valor a tus necesidades específicas." %}
         </p>
         <div class="project-grid">
             {% for project in projects %}
@@ -23,14 +25,17 @@
                                         <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
                                         <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
                                     </svg>
-                                Demo en Vivo</a>
+                                {% trans "Demo en Vivo" %}</a>
                             {% endif %}
                             {% if project.code_url %}
-                                <a href="{{ project.code_url }}" class="card-link">
+                                <a href="{{ project.code_url }}"
+                                   class="card-link"
+                                   target="_blank"
+                                   rel="noopener noreferrer">
                                     <svg viewBox="0 0 24 24">
                                         <path d="M16 18l6-6-6-6M8 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
                                     </svg>
-                                Código Fuente</a>
+                                {% trans "Código Fuente" %}</a>
                             {% endif %}
                         </div>
                     </div>

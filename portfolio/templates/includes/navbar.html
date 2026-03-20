@@ -36,7 +36,7 @@
                         style="border: none;
                                background: transparent;
                                cursor: pointer;
-                               color: #666;
+                               color: var(--text-muted);
                                font-weight: 500">
                     {% get_current_language as LANGUAGE_CODE %}
                     {% get_available_languages as LANGUAGES %}
@@ -57,6 +57,21 @@
                 </svg>
             </button>
             <a href="#contacto" class="btn btn-contact btn-filled">{% trans "Contáctame" %}</a>
+        </div>
+        <div class="nav-container">
+            <div class="nav-actions"></div>
+            <button class="hamburger" aria-label="Abrir menú">
+                <svg width="24"
+                     height="24"
+                     viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
         </div>
     </nav>
 </header>

@@ -81,13 +81,11 @@ msgstr ""
 
 #: portfolio/templates/layouts/about.html:16
 msgid ""
-"Cuando no estoy codificando, disfruto explorando nuevas tecnologías, "
-"contribuyendo a proyectos de código abierto y haciendo senderismo. Creo que "
+"Creo que "
 "el aprendizaje continuo y un equilibrio saludable entre el trabajo y la vida "
 "personal son claves para mantenerme creativo y motivado."
 msgstr ""
-"When I'm not coding, I enjoy exploring new technologies, contributing to "
-"open-source projects, and hiking. I believe continuous learning and a healthy "
+"I believe continuous learning and a healthy "
 "work-life balance are key to staying creative and motivated."
 
 #: portfolio/templates/layouts/contact.html:5

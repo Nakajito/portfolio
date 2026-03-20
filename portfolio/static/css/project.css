@@ -76,12 +76,12 @@ button,
 
 .btn-outline {
   background-color: transparent;
-  color: var(--text-color-dark);
-  border: 1px solid #ccc;
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
 }
 
 .btn-outline:hover {
-  border-color: var(--text-color-dark);
+  border-color: var(--text-color);
   background-color: rgba(0, 0, 0, 0.05);
   transform: translateY(-2px);
 }
@@ -142,7 +142,7 @@ header {
 .nav-link {
   font-size: 0.9rem;
   font-weight: 500;
-  color: #555;
+  color: var(--text-muted);
   padding: 0.5rem;
 }
 
@@ -160,7 +160,7 @@ header {
 .theme-switch {
   background: none;
   border: none;
-  color: #666;
+  color: var(--text-muted);
   cursor: pointer;
   font-size: 0.9rem;
   display: flex;
@@ -170,7 +170,7 @@ header {
 
 .locale-switch:hover,
 .theme-switch:hover {
-  color: var(--text-color-dark);
+  color: var(--text-color);
 }
 
 .btn-contact {
@@ -188,7 +188,7 @@ header {
 
 /* Sección Hero */
 #hero {
-  background-color: var(--bg-color-light);
+  background-color: var(--bg-color-alt);
   text-align: center;
   padding: 10rem 0 7rem;
 }
@@ -214,12 +214,12 @@ header {
 .hero-subtitle {
   font-size: 1.8rem;
   font-weight: 600;
-  color: #444;
+  color: var(--text-muted);
   margin-bottom: 1.5rem;
 }
 
 .hero-description {
-  color: #666;
+  color: var(--text-muted);
   margin-bottom: 2.5rem;
   line-height: 1.7;
 }
@@ -239,7 +239,7 @@ header {
 .social-link svg {
   width: 22px;
   height: 22px;
-  fill: #666;
+  fill: var(--text-muted);
   transition: fill 0.3s ease;
 }
 
@@ -280,13 +280,13 @@ header {
 }
 
 .about-text p {
-  color: #666;
+  color: var(--text-muted);
   margin-bottom: 1rem;
 }
 
 /* Sección Stack Tecnológico */
 #stack {
-  background-color: var(--bg-color-light);
+  background-color: var(--bg-color-alt);
 }
 
 .stack-category {
@@ -351,7 +351,7 @@ header {
 .tech-name {
   font-size: 0.8rem;
   font-weight: 600;
-  color: #555;
+  color: var(--text-muted);
   text-align: center;
 }
 
@@ -451,7 +451,7 @@ header {
   display: flex;
   gap: 1.2rem;
   font-size: 0.8rem;
-  color: #666;
+  color: var(--text-muted);
   margin-top: auto;
 }
 
@@ -473,7 +473,7 @@ header {
 
 /* Sección Contacto */
 #contacto {
-  background-color: var(--bg-color-light);
+  background-color: var(--bg-color-alt);
 }
 
 .contact-form {
@@ -493,7 +493,7 @@ header {
   display: block;
   font-size: 0.9rem;
   margin-bottom: 0.5rem;
-  color: #555;
+  color: var(--text-muted);
   font-weight: 600;
 }
 
@@ -502,9 +502,11 @@ header {
   width: 100%;
   padding: 12px;
   border-radius: 8px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   font-family: var(--font-main);
   font-size: 0.95rem;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 .form-input:focus,
@@ -527,8 +529,8 @@ header {
 
 /* Pie de página (Footer) */
 footer {
-  background-color: var(--bg-color-dark);
-  color: #888;
+  background-color: var(--bg-color-alt);
+  color: var(--text-muted);
   padding: 2rem 0;
   font-size: 0.8rem;
 }
@@ -545,17 +547,55 @@ footer {
 }
 
 .footer-social .social-link svg {
-  fill: #888;
+  fill: var(--text-muted);
 }
 
 .footer-social .social-link:hover svg {
   fill: var(--primary-color);
 }
 
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.hamburger:hover {
+  color: var(--primary-color);
+}
+
 /* Media Queries básicas para responsividad */
 @media (max-width: 900px) {
+  .hamburger {
+    display: block; /* Mostrar la hamburguesa en móviles */
+    z-index: 1001;
+  }
+
   .nav-menu {
-    display: none;
+    /* Menú deslizante */
+    position: fixed;
+    top: 70px; /* La altura de tu header */
+    left: -100%; /* Oculto fuera de la pantalla por la izquierda */
+    width: 100%;
+    height: calc(100vh - 70px);
+    background-color: var(--card-bg);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    transition: left 0.3s ease; /* Animación suave */
+    border-top: 1px solid var(--border-color);
+  }
+  .nav-menu.active {
+    left: 0;
+  }
+
+  .nav-link {
+    font-size: 1.2rem; /* Enlaces más grandes para poder tocarlos fácil */
   }
   .stack-grid {
     grid-template-columns: repeat(3, 1fr);

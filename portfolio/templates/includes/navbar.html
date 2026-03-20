@@ -9,19 +9,19 @@
         </a>
         <ul class="nav-menu">
             <li>
-                <a href="#sobre-mi" class="nav-link">{% trans "Sobre mi" %}</a>
+                <a href="{% url 'home' %}#sobre-mi" class="nav-link">{% trans "Sobre mi" %}</a>
             </li>
             <li>
-                <a href="#stack" class="nav-link">{% trans "Habilidades" %}</a>
+                <a href="{% url 'home' %}#stack" class="nav-link">{% trans "Habilidades" %}</a>
             </li>
             <li>
-                <a href="#proyectos" class="nav-link">{% trans "Proyectos" %}</a>
+                <a href="{% url 'home' %}#proyectos" class="nav-link">{% trans "Proyectos" %}</a>
             </li>
             <li>
-                <a href="#contacto" class="nav-link">{% trans "Contacto" %}</a>
+                <a href="{% url 'home' %}#contacto" class="nav-link">{% trans "Contacto" %}</a>
             </li>
             <li>
-                <a href="#" class="nav-link">{% trans "Blog" %}</a>
+                <a href="{% url 'blog:home' %}" class="nav-link">{% trans "Blog" %}</a>
             </li>
         </ul>
         <div class="nav-actions">

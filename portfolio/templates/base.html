@@ -44,11 +44,7 @@
   <body>
     {% include 'includes/navbar.html' %}
     <main>
-      {% include 'layouts/hero.html' %}
-      {% include 'layouts/about.html' %}
-      {% include 'layouts/stack.html' %}
-      {% include 'layouts/projects.html' %}
-      {% include 'layouts/contact.html' %}
+      {% block content %}{% endblock %}
     </main>
     {% include 'includes/footer.html' %}
   </body>

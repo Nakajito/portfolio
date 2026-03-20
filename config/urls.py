@@ -14,7 +14,6 @@ from .api import api
 
 urlpatterns = [
     path("", HomeView.as_view(), name="home"),
-    path("contact/", portafolio_view, name="contact"),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     # User management
@@ -22,6 +21,9 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
     path("i18n/", include("django.conf.urls.i18n")),
+    path("contact/", portafolio_view, name="contact"),
+    path("blog/", include("portfolio.blog.urls", namespace="blog")),
+    path("markdownx/", include("markdownx.urls")),
     # Media files
     *static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
 ]

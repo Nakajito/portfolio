@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block title %}
+    {{ post.title }} | {% trans "Blog" %}
+{% endblock %}
+{% block content %}
+    <section id="blog-detail" style="padding-top: 120px; min-height: 80vh;">
+        <div class="container" style="max-width: 800px;">
+            <a href="{% url 'blog:home' %}"
+               class="card-link"
+               style="margin-bottom: 2rem;
+                      display: inline-flex">&larr; {% trans "Volver al blog" %}</a>
+            <article style="background-color: var(--card-bg);
+                            padding: 3rem;
+                            border-radius: 12px;
+                            border: 1px solid var(--border-color)">
+                {% if post.category %}
+                    <div class="tag-list" style="margin-bottom: 1rem;">
+                        <span class="tag">{{ post.category.name }}</span>
+                    </div>
+                {% endif %}
+                <h1 class="hero-title"
+                    style="font-size: 2.5rem;
+                           text-align: left;
+                           margin-bottom: 0.5rem">{{ post.title }}</h1>
+                <p style="color: var(--text-muted);
+                          font-size: 0.9rem;
+                          border-bottom: 1px solid var(--border-color);
+                          padding-bottom: 1.5rem;
+                          margin-bottom: 2rem">
+                    <strong>{{ post.author.name|default:post.author.username|default:"Daniel B." }}</strong> | {{ post.created_on|date:"F d, Y" }}
+                </p>
+                <div class="post-content"
+                     style="color: var(--text-color);
+                            line-height: 1.8;
+                            font-size: 1.05rem">{{ post.formatted_markdown|safe }}</div>
+            </article>
+        </div>
+    </section>
+{% endblock %}

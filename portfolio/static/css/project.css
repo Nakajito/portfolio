@@ -628,3 +628,20 @@ footer {
     flex-direction: column;
   }
 }
+
+/* Estilos para el contenido del blog (Markdown) */
+.post-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+}
+.post-content th,
+.post-content td {
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  text-align: left;
+}
+.post-content th {
+  background-color: var(--bg-color-alt);
+  color: var(--primary-color);
+}

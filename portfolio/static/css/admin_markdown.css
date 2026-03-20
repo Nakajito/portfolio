@@ -1,0 +1,45 @@
+/* 1. Contenedor principal: Aquí fijamos la altura estricta */
+.markdownx {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 20px;
+  width: 100%;
+  height: 700px !important; /* <--- Límite absoluto para ambos */
+  align-items: stretch !important;
+}
+
+/* 2. El editor de texto (Izquierda) */
+textarea.markdownx-editor {
+  flex: 1 !important;
+  width: 50% !important;
+  max-width: 50% !important;
+  height: 100% !important; /* Se ajusta a los 700px del padre */
+  max-height: 100% !important;
+  resize: none !important; /* Evita que crezca o se estire */
+  overflow-y: auto !important; /* Activa la barra de scroll */
+  font-family: monospace;
+  box-sizing: border-box;
+  margin: 0 !important;
+}
+
+/* 3. La vista previa (Derecha) */
+.markdownx-preview {
+  flex: 1 !important;
+  width: 50% !important;
+  max-width: 50% !important;
+  height: 100% !important; /* Se ajusta a los 700px del padre */
+  max-height: 100% !important;
+  overflow-y: auto !important; /* Activa la barra de scroll */
+  border: 1px solid #555;
+  padding: 15px 25px;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.02);
+  box-sizing: border-box;
+  margin: 0 !important;
+}
+
+/* Evitar que las imágenes desborden la vista previa */
+.markdownx-preview img {
+  max-width: 100%;
+  height: auto;
+}

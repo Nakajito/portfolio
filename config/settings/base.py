@@ -76,10 +76,16 @@ THIRD_PARTY_APPS = [
     "allauth.account",
     "allauth.mfa",
     "allauth.socialaccount",
+    "markdownx",
     "corsheaders",
 ]
 
-LOCAL_APPS = ["portfolio.users", "portfolio.projects", "portfolio.contact"]
+LOCAL_APPS = [
+    "portfolio.users",
+    "portfolio.projects",
+    "portfolio.contact",
+    "portfolio.blog",
+]
 
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -275,3 +281,7 @@ SOCIALACCOUNT_FORMS = {"signup": "portfolio.users.forms.UserSocialSignupForm"}
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+# --- CONFIGURACIONES DE MARKDOWNX ---
+MARKDOWNX_MARKDOWN_EXTENSIONS = [
+    "markdown.extensions.extra",
+]

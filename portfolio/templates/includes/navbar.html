@@ -30,7 +30,7 @@
                   class="locale-switch-form"
                   style="display: inline-block">
                 {% csrf_token %}
-                <input name="next" type="hidden" value="{{ redirect_to }}" />
+                <input name="next" type="hidden" value="{{ request.path }}" />
                 <select name="language"
                         onchange="this.form.submit()"
                         style="border: none;

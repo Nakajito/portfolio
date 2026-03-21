@@ -1,5 +1,7 @@
+from deep_translator import GoogleTranslator
 from django.conf import settings
 from django.db import models
+from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 from markdownx.models import MarkdownxField
 from markdownx.utils import markdownify
@@ -31,6 +33,15 @@ class Post(models.Model):
         related_name="blog_posts",
         verbose_name=_("Autor"),
     )
+    short_description = models.CharField(
+        _("Descripción corta"),
+        max_length=255,
+        blank=True,
+        null=True,
+        help_text=_(
+            "Breve resumen que aparecerá en la tarjeta de la lista de artículos."
+        ),
+    )
     content = MarkdownxField(_("Contenido"))
     created_at = models.DateTimeField(_("Fecha de creación"), auto_now_add=True)
     updated_at = models.DateTimeField(_("Fecha de actualización"), auto_now=True)
@@ -57,3 +68,32 @@ class Post(models.Model):
     @property
     def formatted_markdown(self):
         return markdownify(self.content)
+
+    def save(self, *args, **kwargs):
+        translator = GoogleTranslator(source="es", target="en")
+
+        try:
+            if self.title_es_mx and not self.title_en:
+                self.title_en = translator.translate(self.title_es_mx)
+
+            if self.short_description_es_mx and not self.short_description_en:
+                self.short_description_en = translator.translate(
+                    self.short_description_es_mx
+                )
+
+            if self.content_es_mx and not self.content_en:
+                self.content_en = translator.translate(self.content_es_mx)
+
+            if self.title_en and not self.slug_en:
+                self.slug_en = slugify(self.title_en)
+
+        except Exception as e:
+            print(f"Error en traducción automática: {e}")
+
+        if self.title_es_mx and not self.slug_es_mx:
+            self.slug_es_mx = slugify(self.title_es_mx)
+
+        if self.title_en and not self.slug_en:
+            self.slug_en = slugify(self.title_en)
+
+        super().save(*args, **kwargs)

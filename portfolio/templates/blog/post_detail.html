@@ -37,6 +37,50 @@
                             line-height: 1.8;
                             font-size: 1.05rem">{{ post.formatted_markdown|safe }}</div>
             </article>
+            <hr class="related-divider" />
+            <section class="related-posts">
+                <h3 class="related-heading">{% trans "Lecturas relacionadas" %}</h3>
+                <div class="related-grid">
+                    {% if prev_post %}
+                        <a href="{% url 'blog:post_detail' prev_post.slug|default:prev_post.slug_es_mx %}"
+                           class="related-card prev-card">
+                            <div class="related-icon">
+                                <svg viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     stroke-width="2">
+                                    <path d="M15 18l-6-6 6-6"></path>
+                                </svg>
+                            </div>
+                            <div class="related-content">
+                                <span class="related-label">{% trans "Anterior" %}</span>
+                                <h4 class="related-title">{{ prev_post.title }}</h4>
+                            </div>
+                        </a>
+                    {% else %}
+                        <div class="related-card empty-card"></div>
+                    {% endif %}
+                    {% if next_post %}
+                        <a href="{% url 'blog:post_detail' next_post.slug|default:next_post.slug_es_mx %}"
+                           class="related-card next-card">
+                            <div class="related-content text-right">
+                                <span class="related-label">{% trans "Siguiente" %}</span>
+                                <h4 class="related-title">{{ next_post.title }}</h4>
+                            </div>
+                            <div class="related-icon">
+                                <svg viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     stroke-width="2">
+                                    <path d="M9 18l6-6-6-6"></path>
+                                </svg>
+                            </div>
+                        </a>
+                    {% else %}
+                        <div class="related-card empty-card"></div>
+                    {% endif %}
+                </div>
+            </section>
         </div>
     </section>
 {% endblock %}

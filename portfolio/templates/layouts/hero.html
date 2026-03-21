@@ -1,5 +1,6 @@
-{% load static i18n %}
+{% load i18n static %}
 
+{% get_current_language as LANGUAGE_CODE %}
 <section id="hero">
     <div class="hero-content container">
         <h1 class="hero-title">
@@ -20,7 +21,7 @@
                     <polyline points="7 7 12 12 7 17"></polyline>
                 </svg>
             </a>
-            <a href="{% static 'cv/CV_EN.pdf' %}"
+            <a href="{% if LANGUAGE_CODE == 'en' %}{% static 'cv/CV_EN.pdf' %}{% else %}{% static 'cv/CV_ES.pdf' %}{% endif %}"
                class="btn btn-cv btn-outline"
                target="_blank"
                rel="noopener noreferrer">{% trans "Obtener CV" %}

@@ -29,12 +29,18 @@
                     <p class="post-count">MOSTRANDO {{ post_list|length }} DE {{ total_posts }} PUBLICACIONES</p>
                     <div class="post-list-vertical">
                         {% for post in post_list %}
-                            <a href="{% url 'blog:post_detail' post.slug %}"
+                            <a href="{% url 'blog:post_detail' post.slug|default:post.slug_es_mx %}"
                                class="post-card-horizontal">
                                 <div class="post-card-content">
                                     <p class="post-date">{{ post.created_on|date:"M d, Y"|upper }}</p>
                                     <h2 class="post-title">{{ post.title }}</h2>
-                                    <p class="post-excerpt">{{ post.content|striptags|truncatewords:25 }}</p>
+                                    <p class="post-excerpt">
+                                        {% if post.short_description %}
+                                            {{ post.short_description }}
+                                        {% else %}
+                                            {{ post.content|striptags|truncatewords:25 }}
+                                        {% endif %}
+                                    </p>
                                     <div class="post-tags">
                                         {% if post.category %}<span class="post-tag">{{ post.category.name|upper }}</span>{% endif %}
                                     </div>

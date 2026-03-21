@@ -455,6 +455,103 @@
 }
 
 /* =========================================
+   LECTURAS RELACIONADAS (POST DETAIL)
+   ========================================= */
+.related-divider {
+  border: 0;
+  height: 1px;
+  background-color: var(--border-color);
+  margin: 4rem 0 2rem 0;
+}
+
+.related-posts {
+  margin-bottom: 4rem;
+}
+
+.related-heading {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+.related-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.related-card {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  text-decoration: none;
+  transition:
+    border-color 0.3s ease,
+    transform 0.2s ease;
+  gap: 15px;
+}
+
+.related-card:hover {
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+/* Evita que los bordes se rompan si no hay post anterior/siguiente */
+.related-card.empty-card {
+  background-color: transparent;
+  border: none;
+  pointer-events: none;
+}
+
+.next-card {
+  justify-content: space-between;
+}
+
+.related-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.text-right {
+  text-align: right;
+  align-items: flex-end;
+}
+
+.related-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.related-title {
+  font-size: 1.1rem;
+  color: var(--text-color);
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.related-icon svg {
+  width: 24px;
+  height: 24px;
+  color: var(--text-muted);
+  transition: color 0.3s ease;
+}
+
+.related-card:hover .related-icon svg {
+  color: var(--primary-color);
+}
+
+/* =========================================
    MEDIA QUERIES PARA PÁGINAS
    ========================================= */
 @media (max-width: 900px) {
@@ -474,12 +571,19 @@
     flex: 0 0 100%;
     max-width: 100%;
   }
+
   /* Secciones del Blog */
   .blog-grid-layout {
     flex-direction: column;
   }
+
   .blog-sidebar {
     width: 100%;
+  }
+
+  .related-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 }
 

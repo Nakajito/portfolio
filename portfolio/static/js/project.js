@@ -1,6 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
   const themeSwitchBtn = document.querySelector(".theme-switch");
   const htmlElement = document.documentElement;
+  setTimeout(() => {
+    document.body.classList.remove("preload");
+  }, 100);
 
   // 1. Revisar si hay un tema guardado en localStorage
   const savedTheme = localStorage.getItem("theme");
@@ -91,4 +94,46 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
+
+  // --- Lógica de Deslizamiento Suave para el Menú ---
+  const navLinks = document.querySelectorAll(".nav-link");
+
+  navLinks.forEach((link) => {
+    link.addEventListener("click", function (e) {
+      // Obtenemos a dónde apunta el enlace
+      const targetUrl = new URL(this.href, window.location.origin);
+
+      // Verificamos si el enlace apunta a la misma página en la que ya estamos y tiene un #
+      if (targetUrl.pathname === window.location.pathname && targetUrl.hash) {
+        const targetSection = document.querySelector(targetUrl.hash);
+
+        if (targetSection) {
+          // Evitamos que recargue la página
+          e.preventDefault();
+
+          // Nos deslizamos suavemente
+          targetSection.scrollIntoView({
+            behavior: "smooth",
+          });
+
+          // Actualizamos la URL en el navegador silenciosamente
+          window.history.pushState({}, "", targetUrl.href);
+
+          // (Opcional) Si estás en celular y el menú está abierto, lo cerramos
+          const navMenu = document.querySelector(".nav-menu");
+          const hamburgerBtn = document.querySelector(".hamburger");
+          if (navMenu && navMenu.classList.contains("active")) {
+            navMenu.classList.remove("active");
+            // Restablecemos el ícono de la hamburguesa
+            hamburgerBtn.innerHTML = `
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="3" y1="12" x2="21" y2="12"></line>
+                                <line x1="3" y1="6" x2="21" y2="6"></line>
+                                <line x1="3" y1="18" x2="21" y2="18"></line>
+                            </svg>`;
+          }
+        }
+      }
+    });
+  });
 });

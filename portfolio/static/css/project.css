@@ -21,6 +21,10 @@
   --border-color: #333333;
 }
 
+.preload {
+  transition: none !important;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -575,6 +579,13 @@ footer {
     z-index: 1001;
   }
 
+  .blog-grid-layout {
+    flex-direction: column;
+  }
+  .blog-sidebar {
+    width: 100%;
+  }
+
   .nav-menu {
     /* Menú deslizante */
     position: fixed;
@@ -644,4 +655,161 @@ footer {
 .post-content th {
   background-color: var(--bg-color-alt);
   color: var(--primary-color);
+}
+
+/* =========================================
+   NUEVO LAYOUT DEL BLOG (Lista Horizontal)
+   ========================================= */
+.blog-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.blog-grid-layout {
+  display: flex;
+  gap: 4rem;
+  align-items: flex-start;
+}
+
+/* Sidebar (Filtros) */
+.blog-sidebar {
+  width: 280px;
+  flex-shrink: 0;
+}
+
+.filter-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+}
+
+.filter-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 15px;
+  background-color: var(--card-bg);
+  border-radius: 6px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  border: 1px solid var(--border-color);
+}
+
+.filter-item:hover {
+  border-color: var(--primary-color);
+}
+
+.filter-checkbox {
+  accent-color: var(--primary-color);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.filter-name {
+  font-size: 0.95rem;
+  color: var(--text-color);
+}
+
+/* Lista Principal de Posts */
+.blog-main {
+  flex-grow: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.post-count {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.post-list-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.post-card-horizontal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 2rem;
+  text-decoration: none;
+  color: inherit;
+  transition:
+    border-color 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.post-card-horizontal:hover {
+  border-color: var(--text-muted);
+  background-color: var(--card-bg);
+}
+
+.post-card-content {
+  flex-grow: 1;
+  padding-right: 2rem;
+}
+
+.post-date {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 0.8rem;
+  letter-spacing: 0.5px;
+}
+
+.post-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.post-excerpt {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+/* Etiquetas (Pills) */
+.post-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.post-tag {
+  font-size: 0.75rem;
+  padding: 4px 12px;
+  background-color: rgba(255, 255, 255, 0.05); /* Muy sutil */
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  border-radius: 4px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Icono de flecha */
+.post-card-icon svg {
+  color: var(--text-muted);
+  transition:
+    color 0.3s,
+    transform 0.3s;
+}
+
+.post-card-horizontal:hover .post-card-icon svg {
+  color: var(--text-color);
+  transform: translateX(5px);
 }

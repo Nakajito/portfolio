@@ -4,6 +4,25 @@
 {% get_current_language as LANGUAGE_CODE %}
 <html lang="{{ LANGUAGE_CODE }}">
   <head>
+    <style>
+      /* Forzamos el fondo oscuro antes de que cargue el resto del sitio */
+      html[data-theme="dark"],
+      html[data-theme="dark"] body {
+        background-color: #121212 !important;
+        color: #f4f4f4 !important;
+      }
+
+      /* Opcional: Si tu tema por defecto es el oscuro, ponlo aquí directo */
+    </style>
+    <script>
+      // Leemos la preferencia del usuario en el milisegundo cero
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else if (savedTheme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    </script>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title>
@@ -41,7 +60,7 @@
       <script defer src="{% static 'js/project.js' %}"></script>
     {% endblock javascript %}
   </head>
-  <body>
+  <body class="preload">
     {% include 'includes/navbar.html' %}
     <main>
       {% block content %}{% endblock %}
